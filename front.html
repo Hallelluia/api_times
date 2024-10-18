@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times</title>
+</head>
+<body>
+
+    <input type="text" placeholder= "Nome" id="nome">
+    <input type="text" placeholder="Ano" id="ano">
+    <input type="text" placeholder="Cor" id="cor">
+    <button onclick="criarTime()">Criar Time</button>
+
+    <p id="times"></p>
+
+    <script>
+        async function pegarTimes() {
+            const resposta = await fetch('http://localhost:3333/times',{
+                method: 'GET'
+            })
+            const times = await resposta.json();
+            console.log(times);
+            
+            const elementoP = document.getElementById('times');
+            elementoP.innerHTML = times[1].nome;
+            
+        }
+        pegarTimes();
+
+        async function criarTime() {
+            const nome = document.getElementById('nome').value;
+            const ano = document.getElementById('ano').value;
+            const cor = document.getElementById('cor').value;
+
+            const novoTime = {
+                "nome": nome,
+                "ano": ano,
+                "cor": cor
+            };
+            const resposta = await fetch('http://localhost:3333/times', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(novoTime)
+            });
+        }
+</script>
+</body>
+</html>

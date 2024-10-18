@@ -1,0 +1,30 @@
+
+###
+
+GET http://localhost:3333/times
+
+###
+
+POST http://localhost:3333/times
+Content-Type: application/json
+
+{
+    "nome": "Internacional",
+    "ano": "1909",
+    "cor": "Vermelho"
+}
+
+###
+
+PUT http://localhost:3333/times/
+Content-Type: application/json
+
+{
+    "nome": "",
+    "ano": "",
+    "cor": ""
+}
+
+###
+
+DELETE http://localhost:3333/times/
